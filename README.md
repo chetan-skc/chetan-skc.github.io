@@ -18,6 +18,8 @@ estimated_reading_time: 5
 
 A personal portfolio for Chetan Goyal, Full Stack Developer (.NET · React · PostgreSQL). The design follows his path from a B.Tech in Metallurgical & Materials Engineering into software: *forged in metallurgy, tempered in code*.
 
+Live site: <https://chetan-skc.github.io>
+
 ## Highlights
 
 * Hero with canvas embers rising from a "furnace", a typewriter tagline and a 3D-tilting periodic element card (Cg, Chetanium) that flips into a business card
@@ -124,13 +126,16 @@ Shared class strings for buttons, chips and form fields live in `src/components/
 
 ## Deployment
 
-The `dist/` folder is a static site, so any static host works. Environment variables are read at build time, so rebuild after changing them.
+The site is hosted on GitHub Pages at <https://chetan-skc.github.io>. Every push to `main` runs `.github/workflows/deploy.yml`, which lints, builds and publishes `dist/`. You can also start a deployment manually from the repository's Actions tab.
+
+Environment variables are read at build time. To turn on the live contact form or Forge Wall in production, add the `VITE_*` values from `.env.example` under Settings > Secrets and variables > Actions > Variables, then re-run the workflow.
+
+The `dist/` folder is a plain static site, so other hosts work too:
 
 | Host              | Build command   | Output | Notes                                                            |
 |-------------------|-----------------|--------|------------------------------------------------------------------|
 | Vercel or Netlify | `npm run build` | `dist` | Add the `VITE_*` variables in the project settings               |
 | Firebase Hosting  | `npm run build` | `dist` | Add a `hosting` block with `"public": "dist"` to `firebase.json` |
-| GitHub Pages      | `npm run build` | `dist` | Set `BASE_PATH=/<repo-name>/` before building                    |
 
 ## Project structure
 
@@ -142,4 +147,5 @@ The `dist/` folder is a static site, so any static host works. Environment varia
 | `src/lib/`                     | Spark engine, live store, contact delivery, GitHub client and helpers   |
 | `src/data/`                    | Editable content                                                        |
 | `src/index.css`                | Tailwind entry: theme tokens, base styles and custom utilities          |
+| `.github/workflows/deploy.yml` | GitHub Actions workflow that deploys the site to GitHub Pages           |
 | `firestore.rules`              | Firestore security rules for the Forge Wall                             |
